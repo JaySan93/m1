@@ -24,7 +24,7 @@ print (Datum, Uhrzeit)
 
 
 #manual calendar, to not be reliant on google api
-fileName = open("/home/pi/script/m1/script/geburtstage.txt", 'r') 
+fileName = open("/home/volumio/script/m1/script/geburtstage.txt", 'r') 
 today = datetime.now().strftime('%d.%m')
 tomorrowRaw = datetime.now() + timedelta(days=1)
 tomorrow = tomorrowRaw.strftime('%d.%m') 
