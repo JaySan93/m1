@@ -6,4 +6,4 @@
 
 export DISPLAY=:0.0
 source /home/pi/.profile
-python3 /home/pi/script/m1/script/waveshare_uhr3.py
+python3 /home/volumio/script/m1/script/waveshare_uhr3.py
