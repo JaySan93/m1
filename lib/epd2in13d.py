@@ -6,12 +6,12 @@
 # *----------------
 # * | This version:   V4.0
 # * | Date        :   2019-06-20
-# # | Info        :   python demo
+# # | Info        :   python3 demo
 # -----------------------------------------------------------------------------
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documnetation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# to use, copy, modify, merge, publish, distribute, sublicense, and//or sell
 # copies of the Software, and to permit persons to  whom the Software is
 # furished to do so, subject to the following conditions:
 #
@@ -42,18 +42,16 @@ class EPD:
         self.width = EPD_WIDTH
         self.height = EPD_HEIGHT
 
-    lut_vcomDC = [  
+    lut_vcom_dc = [0x00, 0x00,
         0x00, 0x08, 0x00, 0x00, 0x00, 0x02,
         0x60, 0x28, 0x28, 0x00, 0x00, 0x01,
         0x00, 0x14, 0x00, 0x00, 0x00, 0x01,
         0x00, 0x12, 0x12, 0x00, 0x00, 0x01,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00
     ]
-
-    lut_ww = [  
+    lut_ww = [
         0x40, 0x08, 0x00, 0x00, 0x00, 0x02,
         0x90, 0x28, 0x28, 0x00, 0x00, 0x01,
         0x40, 0x14, 0x00, 0x00, 0x00, 0x01,
@@ -62,17 +60,24 @@ class EPD:
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     ]
-
-    lut_bw = [  
-        0x40, 0x17, 0x00, 0x00, 0x00, 0x02,
-        0x90, 0x0F, 0x0F, 0x00, 0x00, 0x03,
-        0x40, 0x0A, 0x01, 0x00, 0x00, 0x01,
-        0xA0, 0x0E, 0x0E, 0x00, 0x00, 0x02,
+    lut_bw = [
+        0x40, 0x08, 0x00, 0x00, 0x00, 0x02,
+        0x90, 0x28, 0x28, 0x00, 0x00, 0x01,
+        0x40, 0x14, 0x00, 0x00, 0x00, 0x01,
+        0xA0, 0x12, 0x12, 0x00, 0x00, 0x01,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     ]
-
+    lut_bb = [
+        0x80, 0x08, 0x00, 0x00, 0x00, 0x02,
+        0x90, 0x28, 0x28, 0x00, 0x00, 0x01,
+        0x80, 0x14, 0x00, 0x00, 0x00, 0x01,
+        0x50, 0x12, 0x12, 0x00, 0x00, 0x01,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    ]
     lut_wb = [
         0x80, 0x08, 0x00, 0x00, 0x00, 0x02,
         0x90, 0x28, 0x28, 0x00, 0x00, 0x01,
@@ -82,68 +87,7 @@ class EPD:
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     ]
-
-    lut_bb = [ 
-        0x80, 0x08, 0x00, 0x00, 0x00, 0x02,
-        0x90, 0x28, 0x28, 0x00, 0x00, 0x01,
-        0x80, 0x14, 0x00, 0x00, 0x00, 0x01,
-        0x50, 0x12, 0x12, 0x00, 0x00, 0x01,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ]
     
-    lut_vcom1 = [  
-        0x00, 0x19, 0x01, 0x00, 0x00, 0x01,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00,
-    ]
-
-    lut_ww1 = [  
-        0x00, 0x19, 0x01, 0x00, 0x00, 0x01,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ]
-
-    lut_bw1 = [  
-        0x80, 0x19, 0x01, 0x00, 0x00, 0x01,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ]
-
-    lut_wb1 = [
-        0x40, 0x19, 0x01, 0x00, 0x00, 0x01,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ]
-
-    lut_bb1 = [ 
-        0x00, 0x19, 0x01, 0x00, 0x00, 0x01,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    ]
-        
     # Hardware reset
     def reset(self):
         epdconfig.digital_write(self.reset_pin, 1)
@@ -165,64 +109,16 @@ class EPD:
         epdconfig.spi_writebyte([data])
         epdconfig.digital_write(self.cs_pin, 1)
         
-    def ReadBusy(self):
-        logging.debug("e-Paper busy")
-        while(epdconfig.digital_read(self.busy_pin) == 0):      # 0: idle, 1: busy
-            self.send_command(0x71)
-            epdconfig.delay_ms(100)  
-        logging.debug("e-Paper busy release")
-        
-    def TurnOnDisplay(self):
-        self.send_command(0x12)
-        epdconfig.delay_ms(10)
-        self.ReadBusy()
-        
-    def init(self):
-        if (epdconfig.module_init() != 0):
-            return -1
-        # EPD hardware init start
-        self.reset()
-        
-        self.send_command(0x01)	# POWER SETTING
-        self.send_data(0x03)
-        self.send_data(0x00)
-        self.send_data(0x2b)
-        self.send_data(0x2b)
-        self.send_data(0x03)
+    def ReadBusy(self):        
+        print("e-Paper busy")
+        while(epdconfig.digital_read(self.busy_pin) == 0):      #  0: idle, 1: busy
+            epdconfig.delay_ms(200)                
+        print("e-Paper busy release")
 
-        self.send_command(0x06)	# boost soft start
-        self.send_data(0x17) # A
-        self.send_data(0x17) # B
-        self.send_data(0x17) # C
-
-        self.send_command(0x04)
-        self.ReadBusy()
-
-        self.send_command(0x00)	# panel setting
-        self.send_data(0xbf) # LUT from OTP,128x296
-        self.send_data(0x0d) # VCOM to 0V fast
-
-        self.send_command(0x30)	# PLL setting
-        self.send_data(0x3a) # 3a 100HZ   29 150Hz 39 200HZ	31 171HZ
-
-        self.send_command(0x61)	# resolution setting
-        self.send_data(self.width)
-        self.send_data((self.height >> 8) & 0xff)
-        self.send_data(self.height& 0xff)
-
-        self.send_command(0x82)	# vcom_DC setting
-        self.send_data(0x28)
-        return 0
-        
-    def SetFullReg(self):
-        self.send_command(0x82)
-        self.send_data(0x00)
-        self.send_command(0X50)
-        self.send_data(0x97)
-        
+    def set_lut(self):
         self.send_command(0x20) # vcom
         for count in range(0, 44):
-            self.send_data(self.lut_vcomDC[count])
+            self.send_data(self.lut_vcom_dc[count])
         self.send_command(0x21) # ww --
         for count in range(0, 42):
             self.send_data(self.lut_ww[count])
@@ -231,125 +127,131 @@ class EPD:
             self.send_data(self.lut_bw[count])
         self.send_command(0x23) # wb w
         for count in range(0, 42):
-            self.send_data(self.lut_wb[count])
-        self.send_command(0x24) # bb b
-        for count in range(0, 42):
             self.send_data(self.lut_bb[count])
-    
-    def SetPartReg(self):
-        self.send_command(0x82)
-        self.send_data(0x03)
-        self.send_command(0X50)
-        self.send_data(0x47)
-        
-        self.send_command(0x20) # vcom
-        for count in range(0, 44):
-            self.send_data(self.lut_vcom1[count])
-        self.send_command(0x21) # ww --
-        for count in range(0, 42):
-            self.send_data(self.lut_ww1[count])
-        self.send_command(0x22) # bw r
-        for count in range(0, 42):
-            self.send_data(self.lut_bw1[count])
-        self.send_command(0x23) # wb w
-        for count in range(0, 42):
-            self.send_data(self.lut_wb1[count])
         self.send_command(0x24) # bb b
         for count in range(0, 42):
-            self.send_data(self.lut_bb1[count])
+            self.send_data(self.lut_wb[count])
+            
+    def init(self):
+        if (epdconfig.module_init() != 0):
+            return -1
+            
+        # EPD hardware init start
+        self.reset()
+        
+        self.send_command(0x01) # POWER_SETTING
+        self.send_data(0x03) # VDS_EN, VDG_EN
+        self.send_data(0x00) # VCOM_HV, VGHL_LV[1], VGHL_LV[0]
+        self.send_data(0x2b) # VDH
+        self.send_data(0x2b) # VDL
+        self.send_data(0x09) # VDHR
+        
+        self.send_command(0x06) # BOOSTER_SOFT_START
+        self.send_data(0x07)
+        self.send_data(0x07)
+        self.send_data(0x17)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0x60)
+        self.send_data(0xA5)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0x89)
+        self.send_data(0xA5)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0x90)
+        self.send_data(0x00)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0x93)
+        self.send_data(0x2A)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0xA0)
+        self.send_data(0xA5)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0xA1)
+        self.send_data(0x00)
+        
+        # Power optimization
+        self.send_command(0xF8)
+        self.send_data(0x73)
+        self.send_data(0x41)
+        
+        self.send_command(0x16) # PARTIAL_DISPLAY_REFRESH
+        self.send_data(0x00)
+        self.send_command(0x04) # POWER_ON
+        self.ReadBusy()
+
+        self.send_command(0x00) # PANEL_SETTING
+        self.send_data(0xAF) # KW-BF   KWR-AF    BWROTP 0f
+        
+        self.send_command(0x30) # PLL_CONTROL
+        self.send_data(0x3A) # 3A 100HZ   29 150Hz 39 200HZ    31 171HZ
+        
+        self.send_command(0x82) # VCM_DC_SETTING_REGISTER
+        self.send_data(0x12)
+        self.set_lut()
+        return 0
 
     def getbuffer(self, image):
-        # logging.debug("bufsiz = ",int(self.width/8) * self.height)
-        buf = [0xFF] * (int(self.width/8) * self.height)
+        # print "bufsiz = ",(self.width//8) * self.height
+        buf = [0xFF] * ((self.width//8) * self.height)
         image_monocolor = image.convert('1')
         imwidth, imheight = image_monocolor.size
         pixels = image_monocolor.load()
-        # logging.debug("imwidth = %d, imheight = %d",imwidth,imheight)
+        # print "imwidth = %d, imheight = %d",imwidth,imheight
         if(imwidth == self.width and imheight == self.height):
-            logging.debug("Vertical")
+            print("Vertical")
             for y in range(imheight):
                 for x in range(imwidth):
                     # Set the bits for the column of pixels at the current position.
                     if pixels[x, y] == 0:
-                        buf[int((x + y * self.width) / 8)] &= ~(0x80 >> (x % 8))
+                        buf[(x + y * self.width) // 8] &= ~(0x80 >> (x % 8))
         elif(imwidth == self.height and imheight == self.width):
-            logging.debug("Horizontal")
+            print("Horizontal")
             for y in range(imheight):
                 for x in range(imwidth):
                     newx = y
                     newy = self.height - x - 1
                     if pixels[x, y] == 0:
-                        buf[int((newx + newy*self.width) / 8)] &= ~(0x80 >> (y % 8))
+                        buf[(newx + newy*self.width) // 8] &= ~(0x80 >> (y % 8))
         return buf
 
     def display(self, image):
-        if (Image == None):
-            return
-            
         self.send_command(0x10)
-        for i in range(0, int(self.width * self.height / 8)):
-            self.send_data(0x00)
-        epdconfig.delay_ms(10)
-        
+        for i in range(0, self.width * self.height // 8):
+            self.send_data(0xFF)
         self.send_command(0x13)
-        for i in range(0, int(self.width * self.height / 8)):
+        for i in range(0, self.width * self.height // 8):
             self.send_data(image[i])
-        epdconfig.delay_ms(10)
-        
-        self.SetFullReg()
-        self.TurnOnDisplay()
-        
-    def DisplayPartial(self, image):   
-        if (Image == None):
-            return
-            
-        self.SetPartReg()
-        self.send_command(0x91)
-        self.send_command(0x90)
-        self.send_data(0)
-        self.send_data(self.width - 1)
-
-        self.send_data(0)
-        self.send_data(0)
-        self.send_data(int(self.height / 256))
-        self.send_data(self.height % 256 - 1)
-        self.send_data(0x28)
-            
-        self.send_command(0x10)
-        for i in range(0, int(self.width * self.height / 8)):
-            self.send_data(image[i])
-        epdconfig.delay_ms(10)
-        
-        self.send_command(0x13)
-        for i in range(0, int(self.width * self.height / 8)):
-            self.send_data(~image[i])
-        epdconfig.delay_ms(10)
-          
-        self.TurnOnDisplay()
+        self.send_command(0x12) 
+        self.ReadBusy()
         
     def Clear(self, color):
         self.send_command(0x10)
-        for i in range(0, int(self.width * self.height / 8)):
-            self.send_data(0x00)
-        epdconfig.delay_ms(10)
-        
-        self.send_command(0x13)
-        for i in range(0, int(self.width * self.height / 8)):
+        for i in range(0, self.width * self.height // 8):
             self.send_data(0xFF)
-        epdconfig.delay_ms(10)
-        
-        self.SetFullReg()
-        self.TurnOnDisplay()
+        self.send_command(0x13)
+        for i in range(0, self.width * self.height // 8):
+            self.send_data(0xFF)
+        self.send_command(0x12) 
+        self.ReadBusy()
 
     def sleep(self):
         self.send_command(0X50)
         self.send_data(0xf7)
-        self.send_command(0X02) # power off
-        self.send_command(0X07) # deep sleep  
+        self.send_command(0X02)
+        self.send_command(0X07)
         self.send_data(0xA5)
-
-    def Dev_exit(self):
+        
         epdconfig.module_exit()
-
 ### END OF FILE ###
-
