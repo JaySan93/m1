@@ -135,11 +135,11 @@ fontXS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 17) 
 ##############
 def main():
         #Init driver
-        epd = epd2in7.EPD()
+        epd = epd2in13d.EPD()
         epd.init()
         # Image with screen size
         #255: clear the image with white
-        image = Image.new('1', (epd2in7.EPD_HEIGHT, epd2in7.EPD_WIDTH), 255)
+        image = Image.new('1', (epd2in13d.EPD_HEIGHT, epd2in13d.EPD_WIDTH), 255)
         #Object image on which we will draw
         draw = ImageDraw.Draw(image)
         
