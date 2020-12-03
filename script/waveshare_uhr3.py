@@ -11,7 +11,7 @@ import http.client, urllib.parse
 import io
 import sys
 sys.path.append(r'/home/pi/script/waveshareEpaper/lib')
-import epd2in7 #lib fuer display
+import epd2in13d #lib fuer display
 import epdconfig #config fuer display
 from PIL import Image,ImageDraw,ImageFont
 import subprocess, os
