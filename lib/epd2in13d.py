@@ -30,8 +30,8 @@
 import epdconfig
 
 # Display resolution
-EPD_WIDTH       = 104
-EPD_HEIGHT      = 212
+EPD_WIDTH       = 212
+EPD_HEIGHT      = 104
 
 class EPD:
     def __init__(self):
