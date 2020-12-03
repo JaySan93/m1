@@ -122,12 +122,12 @@ else:
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 107) # font for time
-fontXL = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 32) # font for date
-fontL = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 28) # font for bday1
-fontM = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 24) # font for volumio track ID
-fontS = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 21) # font for bday2
-fontXS = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 17) # font for temp, humi, cpu_temp
+fontXXL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 107) # font for time
+fontXL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 32) # font for date
+fontL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 28) # font for bday1
+fontM = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 24) # font for volumio track ID
+fontS = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 21) # font for bday2
+fontXS = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 17) # font for temp, humi, cpu_temp
 ########################################################################################################
 ##############
 #draw function
@@ -157,7 +157,7 @@ def main():
         draw.text((-4, 53), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.line((0, 160, 264, 160), fill = 0)
         draw.text((120, 110), str(t),font = fontXS, fill = 0)             #cpu temp   
-        draw.text((0, 159), 'i:'+str(tempPi1)+'°|'+str(humiPi1)+str('%  o:')+str(tempD1)+'°|'+str(humiD1)+str('%  Δt:' )+str(deltaT)+str('°|ΔH:' )+str(deltaH)+str('%'), font = fontXS, fill = 0)       #temps
+       
         
 
         #Update display
