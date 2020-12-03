@@ -24,7 +24,7 @@ print (Datum, Uhrzeit)
 
 
 #manual calendar, to not be reliant on google api
-fileName = open("/home/pi/script/waveshareEpaper/script/geburtstage.txt", 'r') 
+fileName = open("/home/pi/script/m1/script/geburtstage.txt", 'r') 
 today = datetime.now().strftime('%d.%m')
 tomorrowRaw = datetime.now() + timedelta(days=1)
 tomorrow = tomorrowRaw.strftime('%d.%m') 
@@ -123,12 +123,12 @@ else:
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 107) # font for time
-fontXL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 32) # font for date
-fontL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 28) # font for bday1
-fontM = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 24) # font for volumio track ID
-fontS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 21) # font for bday2
-fontXS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 17) # font for temp, humi, cpu_temp
+fontXXL = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 107) # font for time
+fontXL = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 32) # font for date
+fontL = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 28) # font for bday1
+fontM = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 24) # font for volumio track ID
+fontS = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 21) # font for bday2
+fontXS = ImageFont.truetype('/home/pi/script/m1/lib/Font.ttc', 17) # font for temp, humi, cpu_temp
 ########################################################################################################
 ##############
 #draw function
