@@ -10,7 +10,7 @@ import requests
 import http.client, urllib.parse
 import io
 import sys
-sys.path.append(r'/home/pi/script/m1/lib')
+sys.path.append(r'/home/volumio/script/m1/lib')
 import epd2in13d #lib fuer display
 import epdconfig #config fuer display
 from PIL import Image,ImageDraw,ImageFont
