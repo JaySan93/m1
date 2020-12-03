@@ -7,7 +7,7 @@ import sys
 sys.path.append(r'/home/pi/script/waveshareEpaper/lib')
 import epd2in13d #lib fuer display
 import epdconfig #config fuer display
-epd = epd2in7.EPD()
+epd = epd2in13d.EPD()
 epd.init()
 epd.Clear(0xFF)
 epd.sleep()
