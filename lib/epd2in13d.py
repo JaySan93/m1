@@ -298,7 +298,7 @@ class EPD:
 
     def display(self, image):
         if (Image == None):
-			return
+	return
             
         self.send_command(0x10)
         for i in range(0, self.width * self.height // 8):
