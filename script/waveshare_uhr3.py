@@ -11,8 +11,8 @@ import http.client, urllib.parse
 import io
 import sys
 sys.path.append(r'/home/volumio/script/m1/lib')
-import epd2in13d #lib fuer display
-import epdconfig #config fuer display
+import epd2in13d
+import epdconfig
 from PIL import Image,ImageDraw,ImageFont
 import subprocess, os
 from dateutil import parser
