@@ -109,10 +109,10 @@ except:
 trackid = subprocess.Popen("curl 192.168.0.187/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 (outputRAW, error) = trackid.communicate()
 if trackid.returncode != 1: #if online
-   artist = ' '
-   title = ' '
-   #trackIDString = '        Volumio Offline' # placeholder for test 
-   trackIDString = 'MOBIUS TWO'
+   trackname = outputRAW.decode().split('\"')[3]
+   artist = outputRAW.decode().split('\"')[4]
+   trackIDString = (str(artist)+str(' - ')+str(trackname))
+   #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 else:
    artist = ' '
    title = ' '
