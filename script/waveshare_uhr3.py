@@ -106,7 +106,7 @@ except:
 
 # track ID via volumio REST api holen:
 
-trackid = subprocess.Popen("curl 192.168.0.164/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+trackid = subprocess.Popen("curl 192.168.0.188/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 (outputRAW, error) = trackid.communicate()
 if trackid.returncode != 0: #if offline
    artist = ' '
@@ -150,9 +150,9 @@ def main():
         #draw.line((0, 48, 264, 48), fill = 0) # black line below bday 2
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
-        draw.text((0, 20), trackIDString, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 24), trackIDString, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
-        draw.text((0, 30), Uhrzeit, font = fontXXL, fill = 0)           # time
+        draw.text((0, 36), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.text((160, 80), str(t),font = fontXL, fill = 0)             #cpu temp   
        
         
