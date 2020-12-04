@@ -108,17 +108,17 @@ except:
 
 trackid = subprocess.Popen("curl 192.168.0.187/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 (outputRAW, error) = trackid.communicate()
-if trackid.returncode != 1: #if online
-   title = outputRAW.decode().split('\"')[9]
-   artist = outputRAW.decode().split('\"')[13]
-   trackIDString = (str(artist)+str(' - ')+str(title))
-   #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
-else:
+if trackid.returncode != 0: #if offline
    artist = ' '
-   title = ' '
+   trackname = ' '
    #trackIDString = '        Volumio Offline' # placeholder for test 
    trackIDString = 'MOBIUS ONE'
-    
+else:
+   trackname = outputRAW.decode().split('\"')[9]
+   artist = outputRAW.decode().split('\"')[13]
+   trackIDString = (str(artist)+str(' - ')+str(trackname))
+   #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
+
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
