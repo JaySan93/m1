@@ -112,7 +112,7 @@ if trackid.returncode != 0: #if offline
    artist = ' '
    trackname = ' '
    #trackIDString = '        Volumio Offline' # placeholder for test 
-   trackIDString = '- - - - - - - - - - - - - - - - - - - - -'
+   trackIDString = 'MOBIUS ONE'
 else:
    trackname = outputRAW.decode().split('\"')[9]
    artist = outputRAW.decode().split('\"')[13]
@@ -153,7 +153,7 @@ def main():
         draw.text((0, 20), trackIDString, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 30), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((0, 80), str(t),font = fontXS, fill = 0)             #cpu temp   
+        draw.text((160, 80), str(t),font = fontXL, fill = 0)             #cpu temp   
        
         
 
