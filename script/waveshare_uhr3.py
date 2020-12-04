@@ -147,16 +147,15 @@ def main():
         draw.rectangle((0, 28, 212, 41), fill = 0) #rectangle behind track ID
         draw.text((0, -5), str(Datum)+str(' ')+str(countdown)+str(geb), font = fontXL, fill = 0)              # Date + next bday
         #draw.text((75, -6), gebStringNext, font = fontXL, fill = 0)     # bday1 old version, different size than date
-        draw.line((4, 16, 207, 15), fill = 0)
         #### draw.text((0, 23), gebStringUeberNext, font = fontS, fill = 0) #bday2
         #draw.line((0, 48, 264, 48), fill = 0) # black line below bday 2
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
-        draw.text((0, 26), trackIDString, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 26), trackIDString, font = fontM, fill = 255)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((-3, 31), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.line((0, 94, 211, 94), fill = 0)
-        draw.text((96, 64), str(t),font = fontXS, fill = 0)             #cpu temp   
+        draw.text((180, 80), cpu temperature = str(t),font = fontXS, fill = 0)             #cpu temp   
        
         
 
