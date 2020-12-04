@@ -121,7 +121,6 @@ def mpd_connect():
   client.connect(MPD_HOST, MPD_PORT)
   return True
  except Exception as e:
-  print repr(e)
   return False
 
 def mpd_disconnect():
@@ -130,7 +129,6 @@ def mpd_disconnect():
   client.close()
   client.disconnect()
  except Exception as e:
-  print repr(e)
 
 # Get new song and display cover art
 def Get_NewSong():
