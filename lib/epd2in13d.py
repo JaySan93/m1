@@ -28,7 +28,8 @@
 #
 
 
-import epdconfig
+import logging
+from . import epdconfig
 from PIL import Image
 import RPi.GPIO as GPIO
 
