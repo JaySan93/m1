@@ -107,20 +107,80 @@ except:
 
 # track ID via volumio REST api holen:
         
-trackid = subprocess.Popen("curl 192.168.0.187/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-(outputRAW, error) = trackid.communicate()
-if trackid.returncode != 1: #if offline
-   artist = ' '
-   trackname = ' '
-   #trackIDString = '        Volumio Offline' # placeholder for test 
-   trackIDString = 'MOBIUS ONE'
-else:
-   trackname = outputRAW.decode().split('\"')[9]
-   artist = outputRAW.decode().split('\"')[13]
-   trackIDString = (str(artist)+str(' - ')+str(trackname))
-   #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
+# MPD const and routines
+MPD_HOST = 'localhost'
+MPD_PORT = '6600'
+MPD_PASSWORD = 'volumio' # password for Volumio / MPD
 
-print (outputRAW)
+client = mpd.MPDClient()
+
+def mpd_connect():
+# Connect with MPD
+ try:
+  client.connect(MPD_HOST, MPD_PORT)
+  return True
+ except Exception as e:
+  print repr(e)
+  return False
+
+def mpd_disconnect():
+# Disconnect from MPD
+ try:
+  client.close()
+  client.disconnect()
+ except Exception as e:
+  print repr(e)
+
+# Get new song and display cover art
+def Get_NewSong():
+  if mpd_connect():
+    currentSong = client.currentsong()
+    try:
+     filename    = currentSong['file']
+    except:
+     filename    = ''
+    try:
+     album       = currentSong['album']
+    except:
+     album       = ''
+    try:
+     composer    = currentSong['composer']
+    except:
+     composer    = ''
+    try:
+     artist      = currentSong['artist']
+    except:
+     artist      = ''
+    try:
+     track       = currentSong['track']
+    except:
+     track       = ''
+    try:
+     title       = currentSong['title']
+    except:
+     title       = ''
+    try:
+     ttime       = currentSong['time']
+    except:
+     ttime       = ''
+    try:
+     genre       = currentSong['genre']
+    except:
+     genre       = ''
+    try:
+     albumartist = currentSong['albumartist']
+    except:
+     albumartist = ''
+    print filename
+    print album       # 3
+    print composer
+    print artist      # 1
+    print track
+    print title       # 2
+    print ttime
+    print genre
+    print albumartist
+    
 ######################################################################################################
 #schriftarten definieren
 fontXXL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 48) # font for time
@@ -151,7 +211,7 @@ def main():
         #draw.line((0, 48, 264, 48), fill = 0) # black line below bday 2
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
-        draw.text((0, 24), trackIDString, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 24), title, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 36), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.text((160, 80), str(t),font = fontXL, fill = 0)             #cpu temp   
