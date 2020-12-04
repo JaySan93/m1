@@ -106,7 +106,7 @@ except:
 
 # track ID via volumio REST api holen:
 
-trackid = subprocess.Popen("curl 192.168.0.188/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+trackid = subprocess.Popen("curl 192.168.0.187/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 (outputRAW, error) = trackid.communicate()
 if trackid.returncode != 0: #if offline
    artist = ' '
