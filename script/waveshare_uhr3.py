@@ -5,6 +5,7 @@ print ('------------------------')
 #import datetime
 from datetime import timedelta
 from datetime import datetime
+from mpd import MPDClient, MPDError, CommandError
 import json
 import requests
 import http.client, urllib.parse
@@ -105,10 +106,10 @@ except:
     deltaH = 'err'
 
 # track ID via volumio REST api holen:
-
+        
 trackid = subprocess.Popen("curl 192.168.0.187/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 (outputRAW, error) = trackid.communicate()
-if trackid.returncode != 0: #if offline
+if trackid.returncode != 1: #if offline
    artist = ' '
    trackname = ' '
    #trackIDString = '        Volumio Offline' # placeholder for test 
