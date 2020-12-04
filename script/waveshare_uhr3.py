@@ -156,7 +156,7 @@ def main():
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((-3, 31), Uhrzeit, font = fontXL, fill = 0)           # time
         draw.line((0, 94, 211, 94), fill = 0)
-        draw.text((96, 64), str(t),font = fontXXS, fill = 0)             #cpu temp   
+        draw.text((96, 64), str(t),font = fontXS, fill = 0)             #cpu temp   
        
         
 
