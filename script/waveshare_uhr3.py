@@ -114,7 +114,7 @@ if trackid.returncode != 0: #if offline
    #trackIDString = '        Volumio Offline' # placeholder for test 
    trackIDString = 'MOBIUS ONE'
 else:
-   trackname = outputRAW.decode().split('\"')[9]
+   title = outputRAW.decode().split('\"')[9]
    artist = outputRAW.decode().split('\"')[13]
    trackIDString = (str(artist)+str(' - ')+str(title))
    #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
