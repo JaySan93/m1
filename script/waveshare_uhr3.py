@@ -110,7 +110,8 @@ trackid = subprocess.Popen("curl 192.168.0.187/api/v1/getstate", stdout=subproce
 (outputRAW, error) = trackid.communicate()
 if trackid.returncode != 1: #if online
    title = outputRAW.decode().split('\"')[9]
-   trackIDString = (str(title))
+   artist = outputRAW.decode().split('\"')[13]
+   trackIDString = (str(artist)+str(' - ')+str(title))
    #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 else:
    artist = ' '
