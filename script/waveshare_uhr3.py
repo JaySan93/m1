@@ -119,7 +119,7 @@ else:
    trackIDString = (str(artist)+str(' - ')+str(trackname))
    #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 
-print (trackIDString)
+print (outputRAW)
 ######################################################################################################
 #schriftarten definieren
 fontXXL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 48) # font for time
