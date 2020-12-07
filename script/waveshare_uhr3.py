@@ -11,7 +11,7 @@ import requests
 import http.client, urllib.parse
 import io
 import sys
-sys.path.append(r'/home/volumio/script/m1/lib')
+sys.path.append(r'/home/volumio/m1/lib')
 import epd2in13d
 import epdconfig
 from PIL import Image,ImageDraw,ImageFont
@@ -25,7 +25,7 @@ print (Datum, Uhrzeit)
 
 
 #manual calendar, to not be reliant on google api
-fileName = open("/home/volumio/script/m1/script/geburtstage.txt", 'r') 
+fileName = open("/home/volumio/m1/script/geburtstage.txt", 'r') 
 today = datetime.now().strftime('%d.%m')
 tomorrowRaw = datetime.now() + timedelta(days=1)
 tomorrow = tomorrowRaw.strftime('%d.%m') 
