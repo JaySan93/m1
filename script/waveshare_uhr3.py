@@ -129,7 +129,7 @@ def mpd_disconnect():
   client.close()
   client.disconnect()
  except Exception as e:
-  print repr(e)
+  print (repr(e))
     
 # Get new song and display cover art
 def Get_NewSong():
