@@ -171,15 +171,15 @@ def Get_NewSong():
      albumartist = currentSong['albumartist']
     except:
      albumartist = ''
-    print filename
-    print album       # 3
-    print composer
-    print artist      # 1
-    print track
-    print title       # 2
-    print ttime
-    print genre
-    print albumartist
+    print (filename)
+    print (album)       # 3
+    print (composer)
+    print (artist)      # 1
+    print (track)
+    print (title)       # 2
+    print (ttime)
+    print (genre)
+    print (albumartist)
     
 ######################################################################################################
 #schriftarten definieren
