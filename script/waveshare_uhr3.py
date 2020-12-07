@@ -5,7 +5,6 @@ print ('------------------------')
 #import datetime
 from datetime import timedelta
 from datetime import datetime
-from mpd import MPDClient, MPDError, CommandError
 import mpd
 import json
 import requests
