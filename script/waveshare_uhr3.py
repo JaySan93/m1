@@ -95,7 +95,7 @@ else:
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 36) # font for time
+fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 48) # font for time
 fontXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 18) # font for date
 fontL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 24) # font for bday1
 fontM = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 16) # font for volumio track ID
@@ -123,11 +123,11 @@ def main():
         #draw.line((0, 48, 264, 48), fill = 0) # black line below bday 2
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
-        draw.text((0, 54), trackIDString, font = fontM, fill = 0)       # volumio track ID
-        draw.text((0, 70), title, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 66), trackIDString, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 82), title, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((180, 0), str(t),font = fontXS, fill = 0)             #cpu temp   
+        draw.text((190, 0), str(t),font = fontXS, fill = 0)             #cpu temp   
 
         #Update display
         epd.display(epd.getbuffer(image))
