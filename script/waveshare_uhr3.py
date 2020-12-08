@@ -103,7 +103,7 @@ try:
 except:
     deltaT = 'err'
     deltaH = 'err'
-print (str(t)+'°C   in: '+str(tempPi1)+'°C  '+str(humiPi1)+str('%    out: ')+str(tempD1)+'°C  '+str(humiD1)+str('%    Δt: ' )+str(deltaT)+str('°C   ΔH: ' )+str(deltaH))
+print (str(t)+'C   in: '+str(tempPi1)+'C  '+str(humiPi1)+str('%    out: ')+str(tempD1)+'C  '+str(humiD1)+str('%    Δt: ' )+str(deltaT)+str('C   ΔH: ' )+str(deltaH))
     
 # track ID via volumio REST api holen:
 
