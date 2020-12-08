@@ -128,7 +128,7 @@ def main():
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.text((195, 0), str(t),font = fontXS, fill = 0)             #cpu temp   
-        draw.text((175, 0), 'cpu temperature',font = fontXS, fill = 0)             #cpu temp  
+        draw.text((150, 0), 'cpu temperature',font = fontXS, fill = 0)             #cpu temp  
         
         #Update display
         epd.display(epd.getbuffer(image))
