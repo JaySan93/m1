@@ -75,7 +75,6 @@ for line in fileName:
 f = open("/sys/class/thermal/thermal_zone0/temp", "r") #raspberry pi CPU temp
 traw = f.readline ()
 t = round(float(traw) / 1000)
-ctemp = 'cpu temp:' str(t)
 
 # track ID via volumio REST api holen:
 
@@ -128,7 +127,7 @@ def main():
         draw.text((0, 58), title, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((180, 0), ctemp,font = fontXS, fill = 0)             #cpu temp   
+        draw.text((180, 0), str(t), fontXS, fill = 0)             #cpu temp   
 
         #Update display
         epd.display(epd.getbuffer(image))
