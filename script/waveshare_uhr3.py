@@ -10,7 +10,7 @@ import requests
 import http.client, urllib.parse
 import io
 import sys
-sys.path.append(r'/home/pi/m1/lib')
+sys.path.append(r'/home/volumio/m1/lib')
 import epd2in13d #lib fuer display
 import epdconfig #config fuer display
 from PIL import Image,ImageDraw,ImageFont
@@ -24,7 +24,7 @@ print (Datum, Uhrzeit)
 
 
 #manual calendar, to not be reliant on google api
-fileName = open("/home/pi/m1/script/geburtstage.txt", 'r') 
+fileName = open("/home/volumio/m1/script/geburtstage.txt", 'r') 
 today = datetime.now().strftime('%d.%m')
 tomorrowRaw = datetime.now() + timedelta(days=1)
 tomorrow = tomorrowRaw.strftime('%d.%m') 
@@ -123,12 +123,12 @@ else:
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 64) # font for time
-fontXL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 28) # font for date
-fontL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 24) # font for bday1
-fontM = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 20) # font for volumio track ID
-fontS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 18) # font for bday2
-fontXS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 16) # font for temp, humi, cpu_temp
+fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 64) # font for time
+fontXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 28) # font for date
+fontL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 24) # font for bday1
+fontM = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 20) # font for volumio track ID
+fontS = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 18) # font for bday2
+fontXS = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 16) # font for temp, humi, cpu_temp
 ########################################################################################################
 ##############
 #draw function
@@ -139,7 +139,7 @@ def main():
         epd.init()
         # Image with screen size
         #255: clear the image with white
-        image = Image.new('1', (epd2in13d.EPD_HEIGHT, epd2in7.EPD_WIDTH), 255)
+        image = Image.new('1', (epd2in13d.EPD_HEIGHT, epd2in13d.EPD_WIDTH), 255)
         #Object image on which we will draw
         draw = ImageDraw.Draw(image)
         
