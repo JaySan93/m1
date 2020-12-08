@@ -5,15 +5,14 @@ print ('------------------------')
 #import datetime
 from datetime import timedelta
 from datetime import datetime
-import mpd
 import json
 import requests
 import http.client, urllib.parse
 import io
 import sys
-sys.path.append(r'/home/volumio/m1/lib')
-import epd2in13d
-import epdconfig
+sys.path.append(r'/home/pi/m1/lib')
+import epd2in13d #lib fuer display
+import epdconfig #config fuer display
 from PIL import Image,ImageDraw,ImageFont
 import subprocess, os
 from dateutil import parser
@@ -25,7 +24,7 @@ print (Datum, Uhrzeit)
 
 
 #manual calendar, to not be reliant on google api
-fileName = open("/home/volumio/m1/script/geburtstage.txt", 'r') 
+fileName = open("/home/pi/m1/script/geburtstage.txt", 'r') 
 today = datetime.now().strftime('%d.%m')
 tomorrowRaw = datetime.now() + timedelta(days=1)
 tomorrow = tomorrowRaw.strftime('%d.%m') 
@@ -104,90 +103,32 @@ try:
 except:
     deltaT = 'err'
     deltaH = 'err'
-
+print (str(t)+'°C   in: '+str(tempPi1)+'°C  '+str(humiPi1)+str('%    out: ')+str(tempD1)+'°C  '+str(humiD1)+str('%    Δt: ' )+str(deltaT)+str('°C   ΔH: ' )+str(deltaH))
+    
 # track ID via volumio REST api holen:
-        
-# MPD const and routines
-MPD_HOST = 'localhost'
-MPD_PORT = '6600'
-MPD_PASSWORD = 'volumio' # password for Volumio / MPD
 
-client = mpd.MPDClient()
+trackid = subprocess.Popen("curl 192.168.0.189/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+(outputRAW, error) = trackid.communicate()
+if trackid.returncode != 0: #if offline
+   artist = ' '
+   trackname = ' '
+   #trackIDString = '        Volumio Offline' # placeholder for test 
+   trackIDString = '- - - - - - - - - - - - - - - - - - - - -'
+else:
+   trackname = outputRAW.decode().split('\"')[9]
+   artist = outputRAW.decode().split('\"')[13]
+   trackIDString = (str(artist)+str(' - ')+str(trackname))
+   #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 
-def mpd_connect():
-# Connect with MPD
- try:
-  client.connect(MPD_HOST, MPD_PORT)
-  return True
- except Exception as e:
-  return False
-
-def mpd_disconnect():
-# Disconnect from MPD
- try:
-  client.close()
-  client.disconnect()
- except Exception as e:
-  print (repr(e))
-    
-# Get new song and display cover art
-def Get_NewSong():
-  if mpd_connect():
-    currentSong = client.currentsong()
-    try:
-     filename    = currentSong['file']
-    except:
-     filename    = ''
-    try:
-     album       = currentSong['album']
-    except:
-     album       = ''
-    try:
-     composer    = currentSong['composer']
-    except:
-     composer    = ''
-    try:
-     artist      = currentSong['artist']
-    except:
-     artist      = ''
-    try:
-     track       = currentSong['track']
-    except:
-     track       = ''
-    try:
-     title       = currentSong['title']
-    except:
-     title       = ''
-    try:
-     ttime       = currentSong['time']
-    except:
-     ttime       = ''
-    try:
-     genre       = currentSong['genre']
-    except:
-     genre       = ''
-    try:
-     albumartist = currentSong['albumartist']
-    except:
-     albumartist = ''
-    print (filename)
-    print (album)       # 3
-    print (composer)
-    print (artist)      # 1
-    print (track)
-    print (title)       # 2
-    print (ttime)
-    print (genre)
-    print (albumartist)
-    
+print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 48) # font for time
-fontXL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 24) # font for date
-fontL = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 18) # font for bday1
-fontM = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 12) # font for volumio track ID
-fontS = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 8) # font for bday2
-fontXS = ImageFont.truetype('/home/volumio/script/m1/lib/Font.ttc', 8) # font for temp, humi, cpu_temp
+fontXXL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 64) # font for time
+fontXL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 28) # font for date
+fontL = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 24) # font for bday1
+fontM = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 20) # font for volumio track ID
+fontS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 18) # font for bday2
+fontXS = ImageFont.truetype('/home/pi/script/waveshareEpaper/lib/Font.ttc', 16) # font for temp, humi, cpu_temp
 ########################################################################################################
 ##############
 #draw function
@@ -198,23 +139,23 @@ def main():
         epd.init()
         # Image with screen size
         #255: clear the image with white
-        image = Image.new('1', (epd2in13d.EPD_HEIGHT, epd2in13d.EPD_WIDTH), 255)
+        image = Image.new('1', (epd2in13d.EPD_HEIGHT, epd2in7.EPD_WIDTH), 255)
         #Object image on which we will draw
         draw = ImageDraw.Draw(image)
         
         
         #draw.rectangle((0, 0, 264, 49), fill = 0) #rectangle behind bdays and date
         draw.text((0, 0), str(Datum)+str(' ')+str(countdown)+str(geb), font = fontXL, fill = 0)              # Date + next bday
-        #draw.text((75, -6), gebStringNext, font = fontXL, fill = 0)     # bday1 old version, different size than date
+        #draw.text((75, -6), gebStringNext, font = fontL, fill = 0)     # bday1 old version, different size than date
         #### draw.text((0, 23), gebStringUeberNext, font = fontS, fill = 0) #bday2
         #draw.line((0, 48, 264, 48), fill = 0) # black line below bday 2
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
-        draw.text((0, 24), title, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 28), trackIDString, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 36), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((160, 80), str(t),font = fontXL, fill = 0)             #cpu temp   
-       
+        draw.text((0, 48), str(t),font = fontXS, fill = 0)             #cpu temp   
+        draw.text((0, 64), 'i:'+str(tempPi1)+'°|'+str(humiPi1)+str('%  o:')+str(tempD1)+'°|'+str(humiD1)+str('%  Δt:' )+str(deltaT)+str('°|ΔH:' )+str(deltaH)+str('%'), font = fontXS, fill = 0)       #temps
         
 
         #Update display
@@ -225,4 +166,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
