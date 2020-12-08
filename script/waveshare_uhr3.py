@@ -127,7 +127,7 @@ def main():
         draw.text((0, 58), title, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((180, 0), str(t), fontXS, fill = 0)             #cpu temp   
+        draw.text((180, 0), str(t),font = fontXS, fill = 0)             #cpu temp   
 
         #Update display
         epd.display(epd.getbuffer(image))
