@@ -2,7 +2,7 @@
 from datetime import timedelta
 from datetime import datetime
 
-fileName = open("/home/volumio/script/m1/script/geburtstage.txt", 'r') 
+fileName = open("/home/volumio/m1/script/geburtstage.txt", 'r') 
 today = datetime.now().strftime('%d.%m')
 
 tomorrowRaw = datetime.now() + timedelta(days=1)
