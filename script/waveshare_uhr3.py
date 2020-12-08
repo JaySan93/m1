@@ -76,35 +76,6 @@ f = open("/sys/class/thermal/thermal_zone0/temp", "r") #raspberry pi CPU temp
 traw = f.readline ()
 t = round(float(traw) / 1000)
 
-
-# temperatur und humidity von thingspeak channel holen
-# pi1 data
-data1 = requests.get(url="https://api.thingspeak.com/channels/647418/feeds.json?results=1")
-jsonobj1 = json.loads(data1.content.decode('utf-8'))
-tempPi1 = round(float(jsonobj1["feeds"][0]["field3"]))
-humiPi1 = round(float(jsonobj1["feeds"][0]["field5"]))
-
-# d1 mini data
-data2 = requests.get(url="https://api.thingspeak.com/channels/843073/feeds.json?results=1")
-jsonobj2 = json.loads(data2.content.decode('utf-8'))
-try:
-    tempD1 = round(float(jsonobj2["feeds"][0]["field1"]))
-    humiD1 = round(float(jsonobj2["feeds"][0]["field2"]))
-    last_entry_D1 = jsonobj2["feeds"][0]["created_at"] #time of last entry
-except: #if entry is Null
-    tempD1 = jsonobj2["feeds"][0]["field1"] #displays the field entry (e.g. null)
-    humiD1 = jsonobj2["feeds"][0]["field2"] #displays the field entry (e.g. null)
-    last_entry_D1 = jsonobj2["feeds"][0]["created_at"] #same as in try
-
-#calculate deltaT and deltaH
-try:
-    deltaT = round(float(tempPi1) - float(tempD1))
-    deltaH = round(float(humiPi1) - float(humiD1))
-except:
-    deltaT = 'err'
-    deltaH = 'err'
-print (str(t)+'C   in: '+str(tempPi1)+'C  '+str(humiPi1)+str('%    out: ')+str(tempD1)+'C  '+str(humiD1)+str('%    delta t: ' )+str(deltaT)+str('C   delta H: ' )+str(deltaH))
-    
 # track ID via volumio REST api holen:
 
 trackid = subprocess.Popen("curl localhost:3000/api/v1/getstate", stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
@@ -113,17 +84,18 @@ if trackid.returncode != 0: #if offline
    artist = ' '
    trackname = ' '
    #trackIDString = '        Volumio Offline' # placeholder for test 
-   trackIDString = '- - - - - - - - - - - - - - - - - - - - -'
+   trackIDString = 'MOBIUS ONE'
 else:
    trackname = outputRAW.decode().split('\"')[9]
    artist = outputRAW.decode().split('\"')[13]
-   trackIDString = (str(artist)+str(' - ')+str(trackname))
+   trackIDString = (str(artist))
+   title = (str(trackname))
    #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 64) # font for time
+fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 48) # font for time
 fontXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 28) # font for date
 fontL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 24) # font for bday1
 fontM = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 20) # font for volumio track ID
@@ -152,11 +124,10 @@ def main():
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
         draw.text((0, 28), trackIDString, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 48), title, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
-        draw.text((0, 36), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((0, 48), str(t),font = fontXS, fill = 0)             #cpu temp   
-        draw.text((0, 64), 'i:'+str(tempPi1)+'°|'+str(humiPi1)+str('%  o:')+str(tempD1)+'°|'+str(humiD1)+str('%  Δt:' )+str(deltaT)+str('°|ΔH:' )+str(deltaH)+str('%'), font = fontXS, fill = 0)       #temps
-        
+        draw.text((0, 68), Uhrzeit, font = fontXXL, fill = 0)           # time
+        draw.text((90, 48), str(t),font = fontXS, fill = 0)             #cpu temp   
 
         #Update display
         epd.display(epd.getbuffer(image))
