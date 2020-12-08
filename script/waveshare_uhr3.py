@@ -18,7 +18,7 @@ import subprocess, os
 from dateutil import parser
 import time
 
-Datum = datetime.now().strftime('%-d.%-m.')
+Datum = datetime.now().strftime('%-d/%-m/%-y')
 Uhrzeit = datetime.now().strftime('%H:%M')
 print (Datum, Uhrzeit)
 
@@ -75,6 +75,7 @@ for line in fileName:
 f = open("/sys/class/thermal/thermal_zone0/temp", "r") #raspberry pi CPU temp
 traw = f.readline ()
 t = round(float(traw) / 1000)
+ctemp = 'cpu temp:' str(t)
 
 # track ID via volumio REST api holen:
 
@@ -95,12 +96,12 @@ else:
 print (trackIDString)
 ######################################################################################################
 #schriftarten definieren
-fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 48) # font for time
-fontXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 28) # font for date
+fontXXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 24) # font for time
+fontXL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 18) # font for date
 fontL = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 24) # font for bday1
-fontM = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 20) # font for volumio track ID
-fontS = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 18) # font for bday2
-fontXS = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 16) # font for temp, humi, cpu_temp
+fontM = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 16) # font for volumio track ID
+fontS = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 16) # font for bday2
+fontXS = ImageFont.truetype('/home/volumio/m1/lib/Font.ttc', 12) # font for temp, humi, cpu_temp
 ########################################################################################################
 ##############
 #draw function
@@ -123,11 +124,11 @@ def main():
         #draw.line((0, 48, 264, 48), fill = 0) # black line below bday 2
         #draw.arc((70, 90, 120, 140), 0, 360, fill = 0)
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
-        draw.text((0, 28), trackIDString, font = fontM, fill = 0)       # volumio track ID
-        draw.text((0, 48), title, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 42), trackIDString, font = fontM, fill = 0)       # volumio track ID
+        draw.text((0, 58), title, font = fontM, fill = 0)       # volumio track ID
         #draw.line((0, 77, 264, 77), fill = 0)
-        draw.text((0, 68), Uhrzeit, font = fontXXL, fill = 0)           # time
-        draw.text((90, 48), str(t),font = fontXS, fill = 0)             #cpu temp   
+        draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
+        draw.text((180, 0), ctemp,font = fontXS, fill = 0)             #cpu temp   
 
         #Update display
         epd.display(epd.getbuffer(image))
