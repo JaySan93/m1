@@ -88,8 +88,14 @@ if trackid.returncode != 0: #if offline
 else:
    trackname = outputRAW.decode().split('\"')[9]
    artist = outputRAW.decode().split('\"')[13]
+   bit_rate = outputRAW.decode().split('\"')[37]
+   streamer = outputRAW.decode().split('\"')[29]
+   volume1 = outputRAW.decode().split('\"')[52]
    trackIDString = (str(artist))
    title = (str(trackname))
+   bitrate = (str(bit_rate))
+   streamingservice = (str(streaming))
+   volume = (str(volume1))
    #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 
 print (trackIDString)
@@ -125,10 +131,14 @@ def main():
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
         draw.text((0, 66), trackIDString, font = fontM, fill = 0)       # volumio track ID
         draw.text((0, 82), title, font = fontM, fill = 0)       # volumio track ID
+        draw.text((180, 24), bitrate, font = fontXS, fill = 0)
+        draw.text((180, 12), streamingservice, font = fontXS, fill = 0)
+        draw.text((180, 36), volume, font = fontM, fill = 0)
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.text((195, 0), str(t),font = fontXS, fill = 0)             #cpu temp   
-        draw.text((100, 0), 'cpu temperature',font = fontXS, fill = 0)             #cpu temp  
+        draw.text((120, 0), 'CPU TEMP',font = fontXS, fill = 0)
+        draw.text((140, 36), 'VOLUME',font = fontXS, fill = 0)
         
         #Update display
         epd.display(epd.getbuffer(image))
