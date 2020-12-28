@@ -94,7 +94,7 @@ else:
    trackIDString = (str(artist))
    title = (str(trackname))
    bitrate = (str(bit_rate))
-   streamingservice = (str(streaming))
+   streamingservice = (str(streamer))
    volume = (str(volume1))
    #albumart = outputRAW.decode().split('\"')[21] #das waere sau cool
 
