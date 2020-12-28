@@ -131,14 +131,14 @@ def main():
         #draw.chord((70, 150, 120, 200), 0, 360, fill = 0)
         draw.text((0, 66), trackIDString, font = fontM, fill = 0)       # volumio track ID
         draw.text((0, 82), title, font = fontM, fill = 0)       # volumio track ID
-        draw.text((140, 32), bitrate, font = fontXS, fill = 0)
-        draw.text((140, 20), streamingservice, font = fontXS, fill = 0)
-        draw.text((190, 44), volume, font = fontXS, fill = 0)
+        draw.text((138, 33), bitrate, font = fontXS, fill = 0)
+        draw.text((138, 20), streamingservice, font = fontXS, fill = 0)
+        draw.text((188, 46), volume, font = fontXS, fill = 0)
         #draw.line((0, 77, 264, 77), fill = 0)
         draw.text((0, 18), Uhrzeit, font = fontXXL, fill = 0)           # time
         draw.text((195, 0), str(t),font = fontXS, fill = 0)             #cpu temp   
-        draw.text((140, 0), 'CPU TEMP',font = fontXS, fill = 0)
-        draw.text((140, 44), 'VOLUME',font = fontXS, fill = 0)
+        draw.text((138, 0), 'CPU TEMP',font = fontXS, fill = 0)
+        draw.text((138, 46), 'VOLUME',font = fontXS, fill = 0)
         
         #Update display
         epd.display(epd.getbuffer(image))
